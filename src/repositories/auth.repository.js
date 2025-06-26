@@ -16,9 +16,14 @@ const findUserByPhone = async (phone) => {
   return await User.findOne({ where: { phone } });
 };
 
+const findUserByEmail = async (email) => {
+  return await User.findOne({ where: { email } });
+};
+
 module.exports = {
   checkPhoneExists,
   checkEmailExists,
   createUser,
   findUserByPhone,
+  findUserByEmail,
 };

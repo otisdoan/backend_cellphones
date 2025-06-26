@@ -6,5 +6,6 @@ const routes = express.Router();
 
 routes.post("/register", validateBody(registerSchema), authController.register);
 routes.post("/login", validateBody(loginSchema), authController.login);
+routes.post("/google", authController.loginWithGoogle);
 
 module.exports = routes;
