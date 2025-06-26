@@ -1,4 +1,4 @@
-const { errorResponse } = require("../utils/response");
+const { errorResponse } = require("../utils/response.util");
 
 const validateBody = (schema) => async (req, res, next) => {
   try {

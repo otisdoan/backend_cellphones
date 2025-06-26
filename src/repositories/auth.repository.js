@@ -12,8 +12,13 @@ const createUser = async (data) => {
   return await User.create(data);
 };
 
+const findUserByPhone = async (phone) => {
+  return await User.findOne({ where: { phone } });
+};
+
 module.exports = {
   checkPhoneExists,
   checkEmailExists,
   createUser,
+  findUserByPhone,
 };

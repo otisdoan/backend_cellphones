@@ -2,6 +2,7 @@ const {
   checkPhoneExists,
   checkEmailExists,
   createUser,
+  findUserByPhone,
 } = require("../repositories/auth.repository");
 
 const registerUser = async (data) => {
@@ -16,6 +17,12 @@ const registerUser = async (data) => {
   return await createUser(data);
 };
 
+const getUserByPhone = async (phone) => {
+  const existingPhone = await checkPhoneExists(phone);
+  if (!existingPhone) throw new Error("Phone number is not registered");
+  return await findUserByPhone(phone);
+};
 module.exports = {
   registerUser,
+  getUserByPhone,
 };

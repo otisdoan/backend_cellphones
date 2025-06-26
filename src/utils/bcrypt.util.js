@@ -6,7 +6,9 @@ const hashPassword = async (password) => {
 };
 
 const comparePassword = async (passwordLogin, passwordHashed) => {
-  return await bcrypt.compare(passwordLogin, passwordHashed);
+  const validPassword = await bcrypt.compare(passwordLogin, passwordHashed);
+  if (!validPassword) throw new Error("Password is invalid!");
+  return validPassword;
 };
 
 module.exports = {

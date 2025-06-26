@@ -23,6 +23,18 @@ const registerSchema = yup.object({
     .min(6, "password must be at least 6 characers"),
 });
 
+const loginSchema = yup.object({
+  phone: yup
+    .string()
+    .required("phone is required!")
+    .matches(/^\d{10}$/, "phone must be 10 digits"),
+  password_login: yup
+    .string()
+    .required("password is required!")
+    .min(6, "password must be at least 6 characers"),
+});
+
 module.exports = {
   registerSchema,
+  loginSchema,
 };
