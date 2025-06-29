@@ -4,7 +4,9 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT;
 const allRoute = require("./routes/index");
+const cors = require("cors");
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

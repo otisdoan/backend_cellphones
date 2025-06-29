@@ -16,7 +16,7 @@ const registerSchema = yup.object({
     .string()
     .required("phone is required!")
     .matches(/^\d{10}$/, "phone must be 10 digits"),
-  email: yup.string().email("email is invalid!"),
+  email: yup.string().email("Email is invalid!").optional().nullable(),
   password_hash: yup
     .string()
     .required("password is required!")
