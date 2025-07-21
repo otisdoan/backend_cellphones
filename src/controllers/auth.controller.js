@@ -52,7 +52,6 @@ const loginWithGoogle = async (req, res) => {
     console.log(payload);
     const { email } = payload;
     const user = await getUserByEmail(email);
-    await comparePassword(password_login, user.dataValues.password_hash);
     const token = await generateToken(user.dataValues);
     await saveToken(token);
     successResponse(res, "Login successfully!", {
