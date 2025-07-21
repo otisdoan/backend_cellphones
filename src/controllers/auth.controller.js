@@ -58,7 +58,7 @@ const loginWithGoogle = async (req, res) => {
     await saveToken(tokens);
     successResponse(res, "Login successfully!", {
       ...user.dataValues,
-      ...token,
+      ...tokens,
     });
   } catch (error) {
     errorResponse(res, error);
