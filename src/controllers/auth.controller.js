@@ -4,6 +4,7 @@ const {
   getUserByPhone,
   getUserByEmail,
 } = require("../services/auth.service");
+const { getGoogleUserInfo } = require("../services/google.service");
 const { saveToken } = require("../services/token.service");
 const { hashPassword, comparePassword } = require("../utils/bcrypt.util");
 const { generateToken } = require("../utils/jwt.util");
@@ -42,18 +43,19 @@ const login = async (req, res) => {
 
 const loginWithGoogle = async (req, res) => {
   try {
-    const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-    const { credential } = req.body;
-    const ticket = await client.verifyIdToken({
-      idToken: credential,
-      audience: process.env.GOOGLE_CLIENT_ID,
-    });
-    const payload = ticket.getPayload();
-    console.log(payload);
-    const { email } = payload;
-    const user = await getUserByEmail(email);
-    const token = await generateToken(user.dataValues);
-    await saveToken(token);
+    // const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+    const { token } = req.body;
+    // const ticket = await client.verifyIdToken({
+    //   idToken: credential,
+    //   audience: process.env.GOOGLE_CLIENT_ID,
+    // });
+    // const payload = ticket.getPayload();
+    // console.log(payload);
+    const googleUser = await getGoogleUserInfo(token);
+    console.log("User", googleUser);
+    const user = await getUserByEmail(googleUser.email);
+    const tokens = await generateToken(user.dataValues);
+    await saveToken(tokens);
     successResponse(res, "Login successfully!", {
       ...user.dataValues,
       ...token,
