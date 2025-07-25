@@ -1,9 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../configs/database.config");
-const { default: slugify } = require("slugify");
 
-const Category = sequelize.define(
-  "Category",
+const Brand = sequelize.define(
+  "Brand",
   {
     id: {
       type: DataTypes.BIGINT,
@@ -18,18 +17,11 @@ const Category = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    logo_url: {
+      type: DataTypes.TEXT,
+    },
     description: {
       type: DataTypes.TEXT,
-    },
-    parent_id: {
-      type: DataTypes.BIGINT,
-    },
-    image_url: {
-      type: DataTypes.TEXT,
-    },
-    sort_order: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0,
     },
     is_active: {
       type: DataTypes.BOOLEAN,
@@ -37,15 +29,15 @@ const Category = sequelize.define(
     },
   },
   {
-    tableName: "categories",
+    tableName: "brands",
     timestamps: true,
     underscored: true,
   }
 );
 
-Category.beforeCreate((category) => {
-  if (!category.slug && category.name) {
-    category.slug = slugify(category.name, {
+Brand.beforeCreate((brand) => {
+  if (!brand.slug && brand.name) {
+    brand.slug = slugify(brand.name, {
       lower: true,
       strict: true,
       locale: "vi",
@@ -53,9 +45,9 @@ Category.beforeCreate((category) => {
   }
 });
 
-Category.beforeUpdate((category) => {
-  if (category.changed("name")) {
-    category.slug = slugify(category.name, {
+Brand.beforeUpdate((brand) => {
+  if (brand.changed("name")) {
+    brand.slug = slugify(brand.name, {
       lower: true,
       strict: true,
       locale: "vi",
@@ -63,4 +55,4 @@ Category.beforeUpdate((category) => {
   }
 });
 
-module.exports = Category;
+module.exports = Brand;

@@ -11,12 +11,12 @@ const User = sequelize.define(
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
       unique: true,
     },
     password_hash: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     phone: {
       type: DataTypes.STRING,
@@ -24,7 +24,7 @@ const User = sequelize.define(
     },
     full_name: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     date_of_birth: {
       type: DataTypes.DATE,
