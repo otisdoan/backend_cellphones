@@ -18,6 +18,10 @@ const Product = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    sku: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+    },
     category_id: {
       type: DataTypes.BIGINT,
       allowNull: false,
@@ -94,7 +98,7 @@ Product.beforeCreate((product) => {
   }
 });
 
-Brand.beforeUpdate((product) => {
+Product.beforeUpdate((product) => {
   if (product.changed("name")) {
     product.slug = slugify(product.name, {
       lower: true,
