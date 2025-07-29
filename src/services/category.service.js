@@ -37,7 +37,14 @@ const updateCategoryService = async (id, payload) => {
 };
 
 const getAllNameCategoryService = async () => {
-  return await getAllNameCategoryRepository();
+  const result = await getAllNameCategoryRepository();
+  const customResult = result.map((item) => {
+    return {
+      label: `${item.name}`,
+      value: `${item.name}`,
+    };
+  });
+  return customResult;
 };
 
 module.exports = {

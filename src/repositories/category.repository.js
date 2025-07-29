@@ -23,8 +23,11 @@ const deleteCategoryRepository = async (id) => {
 
 const getAllNameCategoryRepository = async () => {
   const [result] = await sequelize.query("SELECT name FROM categories");
-  console.log(result);
   return result;
+  // return await Category.findAll({
+  //   attributes: ["name"],
+  //   raw: true,
+  // });
 };
 
 const updateCategoryRepository = async (id, payload) => {
