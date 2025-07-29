@@ -30,7 +30,9 @@ const getNameById = async (id) => {
 };
 
 const getAllNameCategoryRepository = async () => {
-  const [result] = await sequelize.query("SELECT name FROM categories");
+  const [result] = await sequelize.query(
+    "SELECT id, name, parent_id FROM categories"
+  );
   return result;
   // return await Category.findAll({
   //   attributes: ["name"],

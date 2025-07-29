@@ -8,6 +8,7 @@ const {
   getAllNameCategoryRepository,
   getNameById,
 } = require("../repositories/category.repository");
+const recursionCategory = require("../utils/recursionCategory");
 
 const createCategory = async (payload) => {
   const { name, slug } = payload;
@@ -48,13 +49,7 @@ const updateCategoryService = async (id, payload) => {
 
 const getAllNameCategoryService = async () => {
   const result = await getAllNameCategoryRepository();
-  const customResult = result.map((item) => {
-    return {
-      label: `${item.name}`,
-      value: `${item.name}`,
-    };
-  });
-  return customResult;
+  return recursionCategory(result);
 };
 
 module.exports = {
