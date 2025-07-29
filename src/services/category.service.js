@@ -6,6 +6,7 @@ const {
   deleteCategoryRepository,
   updateCategoryRepository,
   getAllNameCategoryRepository,
+  getNameById,
 } = require("../repositories/category.repository");
 
 const createCategory = async (payload) => {
@@ -20,7 +21,16 @@ const createCategory = async (payload) => {
 };
 
 const getAllCategoryService = async () => {
-  return await getAllCategoryRepository();
+  const result = await getAllCategoryRepository();
+  for (const item of result) {
+    if (item.parent_id) {
+      const parent = await getNameById(item.parent_id);
+      item.parent_name = parent ?? null;
+    } else {
+      item.parent_name = null;
+    }
+  }
+  return result;
 };
 
 const deleteCategoryService = async (id) => {

@@ -52,7 +52,6 @@ const loginWithGoogle = async (req, res) => {
     // const payload = ticket.getPayload();
     // console.log(payload);
     const googleUser = await getGoogleUserInfo(token);
-    console.log("User", googleUser);
     const user = await getUserByEmail(googleUser.email);
     const tokens = await generateToken(user.dataValues);
     await saveToken(tokens);

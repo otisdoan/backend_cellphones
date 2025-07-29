@@ -10,15 +10,23 @@ const checkSlugExist = async (slug) => {
 };
 
 const addCategory = async (category) => {
-  return await Category.create(category);
+  const { id } = await Category.findOne({
+    where: { name: category.parent_id },
+  });
+  return await Category.create({ ...category, parent_id: id });
 };
 
 const getAllCategoryRepository = async () => {
-  return await Category.findAll();
+  return await Category.findAll({ raw: true });
 };
 
 const deleteCategoryRepository = async (id) => {
   return await Category.destroy({ where: { id } });
+};
+
+const getNameById = async (id) => {
+  const { name } = await Category.findOne({ where: { id } });
+  return name.toString();
 };
 
 const getAllNameCategoryRepository = async () => {
@@ -52,4 +60,5 @@ module.exports = {
   deleteCategoryRepository,
   updateCategoryRepository,
   getAllNameCategoryRepository,
+  getNameById,
 };
