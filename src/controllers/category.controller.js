@@ -3,6 +3,7 @@ const {
   getAllCategoryService,
   deleteCategoryService,
   updateCategoryService,
+  getAllNameCategoryService,
 } = require("../services/category.service");
 const { successResponse, errorResponse } = require("../utils/response.util");
 
@@ -45,9 +46,23 @@ const updateCategoryController = async (req, res) => {
   }
 };
 
+const getAllNameCategoryController = async (req, res) => {
+  try {
+    const allCategory = await getAllNameCategoryService();
+    successResponse(
+      res,
+      "Get all name category successfully!",
+      allCategory,
+      200
+    );
+  } catch (error) {
+    errorResponse(res, error);
+  }
+};
 module.exports = {
   addCategory,
   getAllCategoryController,
   deleteCategoryController,
   updateCategoryController,
+  getAllNameCategoryController,
 };

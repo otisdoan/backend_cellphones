@@ -1,3 +1,4 @@
+const sequelize = require("../configs/database.config");
 const Category = require("../models/category.model");
 
 const checkCategoryExist = async (name) => {
@@ -18,6 +19,12 @@ const getAllCategoryRepository = async () => {
 
 const deleteCategoryRepository = async (id) => {
   return await Category.destroy({ where: { id } });
+};
+
+const getAllNameCategoryRepository = async () => {
+  const [result] = await sequelize.query("SELECT name FROM categories");
+  console.log(result);
+  return result;
 };
 
 const updateCategoryRepository = async (id, payload) => {
@@ -41,4 +48,5 @@ module.exports = {
   getAllCategoryRepository,
   deleteCategoryRepository,
   updateCategoryRepository,
+  getAllNameCategoryRepository,
 };

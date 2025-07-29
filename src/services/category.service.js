@@ -5,6 +5,7 @@ const {
   getAllCategoryRepository,
   deleteCategoryRepository,
   updateCategoryRepository,
+  getAllNameCategoryRepository,
 } = require("../repositories/category.repository");
 
 const createCategory = async (payload) => {
@@ -35,9 +36,14 @@ const updateCategoryService = async (id, payload) => {
   return await updateCategoryRepository(id, payload);
 };
 
+const getAllNameCategoryService = async () => {
+  return await getAllNameCategoryRepository();
+};
+
 module.exports = {
   createCategory,
   getAllCategoryService,
   deleteCategoryService,
   updateCategoryService,
+  getAllNameCategoryService,
 };
