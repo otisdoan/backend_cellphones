@@ -11,7 +11,7 @@ const checkSlugExist = async (slug) => {
 
 const addCategory = async (category) => {
   const { id } = await Category.findOne({
-    where: { name: category.parent_id },
+    where: { name: category.parent_name },
   });
   return await Category.create({ ...category, parent_id: id });
 };
