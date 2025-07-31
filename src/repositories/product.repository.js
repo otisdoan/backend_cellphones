@@ -31,6 +31,13 @@ const updateProductRepository = async (id, payload) => {
   await product.save();
 };
 
+const getAllNameProductRepository = async () => {
+  return await Product.findAll({
+    attributes: ["id", "name"],
+    raw: true,
+  });
+};
+
 module.exports = {
   createProductRepository,
   checkNameExist,
@@ -39,4 +46,5 @@ module.exports = {
   getAllProductReposiroty,
   deleteProductRepository,
   updateProductRepository,
+  getAllNameProductRepository,
 };

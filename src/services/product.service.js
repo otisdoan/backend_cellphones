@@ -5,6 +5,7 @@ const {
   getAllProductReposiroty,
   deleteProductRepository,
   updateProductRepository,
+  getAllNameProductRepository,
 } = require("../repositories/product.repository");
 
 const createProductService = async (payload) => {
@@ -45,9 +46,21 @@ const updateProductService = async (id, payload) => {
   return await updateProductRepository(id, payload);
 };
 
+const getAllNameProductService = async () => {
+  const result = await getAllNameProductRepository();
+  const customResult = result.map((item) => {
+    return {
+      value: Number(item.id),
+      label: item.name,
+    };
+  });
+  return customResult;
+};
+
 module.exports = {
   createProductService,
   getAllProductService,
   deleteProductService,
   updateProductService,
+  getAllNameProductService,
 };

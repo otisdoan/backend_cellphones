@@ -3,6 +3,7 @@ const {
   getAllProductService,
   deleteProductService,
   updateProductService,
+  getAllNameProductService,
 } = require("../services/product.service");
 const { successResponse, errorResponse } = require("../utils/response.util");
 
@@ -44,9 +45,25 @@ const updateProductController = async (req, res) => {
     errorResponse(res, error);
   }
 };
+
+const getAllNameProductController = async (req, res) => {
+  try {
+    const allNameProduct = await getAllNameProductService();
+    successResponse(
+      res,
+      "Get all name product successfully!",
+      allNameProduct,
+      200
+    );
+  } catch (error) {
+    errorResponse(res, error);
+  }
+};
+
 module.exports = {
   createProductController,
   getAllProductController,
   deleteProductController,
   updateProductController,
+  getAllNameProductController,
 };

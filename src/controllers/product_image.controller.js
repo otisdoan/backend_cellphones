@@ -51,6 +51,7 @@ const updateImageController = async (req, res) => {
     errorResponse(res, error);
   }
 };
+
 module.exports = {
   getAllImageController,
   createImageController,
