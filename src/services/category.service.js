@@ -21,16 +21,7 @@ const createCategory = async (payload) => {
 };
 
 const getAllCategoryService = async () => {
-  const result = await getAllCategoryRepository();
-  for (const item of result) {
-    if (item.parent_id) {
-      const parent = await getNameById(item.parent_id);
-      item.parent_name = parent ?? null;
-    } else {
-      item.parent_name = null;
-    }
-  }
-  return result;
+  return await getAllCategoryRepository();
 };
 
 const deleteCategoryService = async (id) => {
