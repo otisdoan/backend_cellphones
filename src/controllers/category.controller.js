@@ -5,7 +5,7 @@ const {
   updateCategoryService,
   getAllNameCategoryService,
 } = require("../services/category.service");
-const recursionCategory = require("../utils/recursionCategory");
+
 const { successResponse, errorResponse } = require("../utils/response.util");
 
 const getAllCategoryController = async (req, res) => {

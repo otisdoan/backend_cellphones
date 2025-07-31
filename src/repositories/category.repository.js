@@ -21,11 +21,6 @@ const deleteCategoryRepository = async (id) => {
   return await Category.destroy({ where: { id } });
 };
 
-const getNameById = async (id) => {
-  const { name } = await Category.findOne({ where: { id } });
-  return name.toString();
-};
-
 const getAllNameCategoryRepository = async () => {
   const [result] = await sequelize.query(
     "SELECT id, name, parent_id FROM categories"
@@ -59,5 +54,4 @@ module.exports = {
   deleteCategoryRepository,
   updateCategoryRepository,
   getAllNameCategoryRepository,
-  getNameById,
 };

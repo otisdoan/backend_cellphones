@@ -1,7 +1,19 @@
+const { QueryTypes } = require("sequelize");
+const sequelize = require("../configs/database.config");
 const ProductImage = require("../models/product_image.model");
 
 const getAllImageRepository = async () => {
-  return await ProductImage.findAll({ raw: true });
+  const result = await sequelize.query(
+    `
+      SELECT pi.*, p.name
+      FROM products p
+      JOIN product_images pi ON pi.product_id = p.id
+    `,
+    {
+      type: QueryTypes.SELECT,
+    }
+  );
+  return result;
 };
 
 const createImageRepository = async (payload) => {

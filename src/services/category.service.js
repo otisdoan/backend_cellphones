@@ -6,7 +6,6 @@ const {
   deleteCategoryRepository,
   updateCategoryRepository,
   getAllNameCategoryRepository,
-  getNameById,
 } = require("../repositories/category.repository");
 const recursionCategory = require("../utils/recursionCategory");
 

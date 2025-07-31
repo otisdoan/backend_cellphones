@@ -1,3 +1,5 @@
+const { QueryTypes } = require("sequelize");
+const sequelize = require("../configs/database.config");
 const Product = require("../models/product.model");
 
 const createProductRepository = async (payload) => {
@@ -17,7 +19,24 @@ const checkSkuExist = async (sku) => {
 };
 
 const getAllProductReposiroty = async () => {
-  return await Product.findAll();
+  return await sequelize.query(
+    `
+      SELECT 
+        p.*, 
+        c.name as category_name, 
+        b.name as brand_name, 
+        ARRAY_AGG(pi.image_url) FILTER (WHERE pi.image_url IS NOT NULL) AS product_image
+      FROM products p
+      JOIN categories c on c.id = p.category_id
+      JOIN brands b on b.id = p.brand_id
+      LEFT JOIN product_images pi ON pi.product_id = p.id
+      GROUP BY p.id, c.name, b.name
+      ORDER BY p.id
+    `,
+    {
+      type: QueryTypes.SELECT,
+    }
+  );
 };
 
 const deleteProductRepository = async (id) => {
