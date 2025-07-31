@@ -20,6 +20,13 @@ const deleteBrandRepository = async (id) => {
   return await Brand.destroy({ where: { id } });
 };
 
+const getAllNameBrandRepository = async () => {
+  return await Brand.findAll({
+    attributes: ["id", "name"],
+    raw: true,
+  });
+};
+
 const updateBrandRepository = async (id, payload) => {
   const brand = await Brand.findByPk(id);
   Object.assign(brand, payload);
@@ -34,4 +41,5 @@ module.exports = {
   getAllBrandRepository,
   deleteBrandRepository,
   updateBrandRepository,
+  getAllNameBrandRepository,
 };

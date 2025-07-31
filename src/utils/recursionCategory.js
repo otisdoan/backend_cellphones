@@ -4,7 +4,7 @@ const recursionCategory = (data, id_parent = null) => {
     if (item.parent_id === id_parent) {
       const children = recursionCategory(data, item.id);
       const node = {
-        value: `${item.name}`,
+        value: Number(item.id),
         title: item.name,
         ...(children.length > 0 && { children }),
       };

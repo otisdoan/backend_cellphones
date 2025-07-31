@@ -3,6 +3,7 @@ const {
   getAllBrandService,
   deleteBrandService,
   updateBrandService,
+  getAllNameBrandService,
 } = require("../services/brand.service");
 const { successResponse, errorResponse } = require("../utils/response.util");
 
@@ -15,6 +16,14 @@ const getAllBrandController = async (req, res) => {
   }
 };
 
+const getAllNameBrandController = async (req, res) => {
+  try {
+    const allNameBrand = await getAllNameBrandService();
+    successResponse(res, "Get all name brand successfully!", allNameBrand, 200);
+  } catch (error) {
+    errorResponse(res, error);
+  }
+};
 const createBrandController = async (req, res) => {
   try {
     const brand = await createBrandService(req.body);
@@ -49,4 +58,5 @@ module.exports = {
   getAllBrandController,
   deleteBrandController,
   updateBrandController,
+  getAllNameBrandController,
 };

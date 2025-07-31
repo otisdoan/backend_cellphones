@@ -5,6 +5,7 @@ const {
   getAllBrandRepository,
   deleteBrandRepository,
   updateBrandRepository,
+  getAllNameBrandRepository,
 } = require("../repositories/brand.repository");
 
 const createBrandService = async (payload) => {
@@ -37,9 +38,21 @@ const updateBrandService = async (id, payload) => {
   return await updateBrandRepository(id, payload);
 };
 
+const getAllNameBrandService = async () => {
+  const result = await getAllNameBrandRepository();
+  const customResult = result.map((item) => {
+    return {
+      value: Number(item.id),
+      label: item.name,
+    };
+  });
+  return customResult;
+};
+
 module.exports = {
   createBrandService,
   getAllBrandService,
   deleteBrandService,
   updateBrandService,
+  getAllNameBrandService,
 };
