@@ -1,3 +1,5 @@
+const { QueryTypes } = require("sequelize");
+const sequelize = require("../configs/database.config");
 const Brand = require("../models/brand.model");
 
 const createBrandRepository = async (payload) => {
@@ -34,6 +36,22 @@ const updateBrandRepository = async (id, payload) => {
   return brand;
 };
 
+const getBrandByCategory = async () => {
+  const result = sequelize.query(
+    `
+      SELECT DISTINCT b.name
+      FROM products p
+      JOIN brands b ON b.id = p.brand_id
+      JOIN categories c ON c.id = p.category_id
+      WHERE c.id = 9
+    `,
+    {
+      type: QueryTypes.SELECT,
+    }
+  );
+  return result;
+};
+
 module.exports = {
   createBrandRepository,
   checkBrandExist,
@@ -42,4 +60,5 @@ module.exports = {
   deleteBrandRepository,
   updateBrandRepository,
   getAllNameBrandRepository,
+  getBrandByCategory,
 };

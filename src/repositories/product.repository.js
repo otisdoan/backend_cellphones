@@ -57,6 +57,19 @@ const getAllNameProductRepository = async () => {
   });
 };
 
+const getProductFeatured = async () => {
+  return await sequelize.query(
+    `
+      SELECT p.name
+      FROM products p
+      WHERE p.is_featured = true
+    `,
+    {
+      type: QueryTypes.SELECT,
+    }
+  );
+};
+
 module.exports = {
   createProductRepository,
   checkNameExist,
@@ -66,4 +79,5 @@ module.exports = {
   deleteProductRepository,
   updateProductRepository,
   getAllNameProductRepository,
+  getProductFeatured,
 };
