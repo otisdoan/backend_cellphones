@@ -57,15 +57,16 @@ const getAllNameProductRepository = async () => {
   });
 };
 
-const getProductFeatured = async () => {
+const getProductFeatured = async (idCategory) => {
   return await sequelize.query(
     `
       SELECT p.name
       FROM products p
-      WHERE p.is_featured = true
+      WHERE p.is_featured = true AND p.category_id = :idCategory
     `,
     {
       type: QueryTypes.SELECT,
+      replacements: { idCategory },
     }
   );
 };

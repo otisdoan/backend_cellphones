@@ -1,3 +1,4 @@
+const sequelize = require("../configs/database.config");
 const Category = require("../models/category.model");
 
 const checkCategoryExist = async (name) => {
