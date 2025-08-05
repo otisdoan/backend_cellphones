@@ -4,6 +4,7 @@ const {
   deleteCategoryService,
   updateCategoryService,
   getAllNameCategoryService,
+  categoryMobileService,
 } = require("../services/category.service");
 
 const { successResponse, errorResponse } = require("../utils/response.util");
@@ -60,10 +61,20 @@ const getAllNameCategoryController = async (req, res) => {
     errorResponse(res, error);
   }
 };
+
+const categoryMobileController = async (req, res) => {
+  try {
+    const category = await categoryMobileService();
+    successResponse(res, "Get category mobile successfully!", category, 200);
+  } catch (error) {
+    errorResponse(res, error);
+  }
+};
 module.exports = {
   addCategory,
   getAllCategoryController,
   deleteCategoryController,
   updateCategoryController,
   getAllNameCategoryController,
+  categoryMobileController,
 };

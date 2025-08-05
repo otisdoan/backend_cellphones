@@ -1,3 +1,4 @@
+const { getBrandByCategory } = require("../repositories/brand.repository");
 const {
   checkCategoryExist,
   checkSlugExist,
@@ -7,6 +8,7 @@ const {
   updateCategoryRepository,
   getAllNameCategoryRepository,
 } = require("../repositories/category.repository");
+const { getProductFeatured } = require("../repositories/product.repository");
 const recursionCategory = require("../utils/recursionCategory");
 
 const createCategory = async (payload) => {
@@ -42,10 +44,30 @@ const getAllNameCategoryService = async () => {
   return recursionCategory(result);
 };
 
+const categoryMobileService = async () => {
+  const result = [];
+  const brand = await getBrandByCategory(9);
+  result.push({ title: "Hãng điện thoại", brand });
+  result.push({
+    title: "Phân khúc giá",
+    price: [
+      { content: "Dưới 2 triệu" },
+      { content: "Từ 2 - 4 triệu" },
+      { content: "Từ 4 - 7 triệu" },
+      { content: "Từ 7 - 13 triệu" },
+      { content: "Từ 13 - 20 triệu" },
+      { content: "Trên 20 triệu" },
+    ],
+  });
+  const products = await getProductFeatured(9);
+  result.push({ title: "Điện thoại HOT ⚡", products });
+  return result;
+};
 module.exports = {
   createCategory,
   getAllCategoryService,
   deleteCategoryService,
   updateCategoryService,
   getAllNameCategoryService,
+  categoryMobileService,
 };

@@ -6,6 +6,7 @@ const {
   deleteBrandRepository,
   updateBrandRepository,
   getAllNameBrandRepository,
+  getBrandByCategory,
 } = require("../repositories/brand.repository");
 
 const createBrandService = async (payload) => {
@@ -29,12 +30,12 @@ const deleteBrandService = async (id) => {
 };
 
 const updateBrandService = async (id, payload) => {
-  const { name, slug } = payload;
-  const nameBrand = await checkBrandExist(name);
-  if (nameBrand) throw new Error("Brand is already exist!");
+  // const { name, slug } = payload;
+  // const nameBrand = await checkBrandExist(name);
+  // if (nameBrand) throw new Error("Brand is already exist!");
 
-  const slugBrand = await checkSlugExist(slug);
-  if (slugBrand) throw new Error("Slug is already exist!");
+  // const slugBrand = await checkSlugExist(slug);
+  // if (slugBrand) throw new Error("Slug is already exist!");
   return await updateBrandRepository(id, payload);
 };
 
@@ -49,10 +50,15 @@ const getAllNameBrandService = async () => {
   return customResult;
 };
 
+// const getBrandByCategoryService = async (idCategory) => {
+//   return await getBrandByCategory(idCategory);
+// };
+
 module.exports = {
   createBrandService,
   getAllBrandService,
   deleteBrandService,
   updateBrandService,
   getAllNameBrandService,
+  // getBrandByCategoryService,
 };

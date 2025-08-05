@@ -4,6 +4,7 @@ const {
   deleteBrandService,
   updateBrandService,
   getAllNameBrandService,
+  getBrandByCategoryService,
 } = require("../services/brand.service");
 const { successResponse, errorResponse } = require("../utils/response.util");
 
@@ -53,10 +54,20 @@ const updateBrandController = async (req, res) => {
     errorResponse(res, error);
   }
 };
+
+// const getBrandCategoryController = async (req, res) => {
+//   try {
+//     const brand = await getBrandByCategoryService(id);
+//     successResponse(res, "Get brand by category successfully!", brand, 200);
+//   } catch (error) {
+//     errorResponse(res, error);
+//   }
+// };
 module.exports = {
   createBrandController,
   getAllBrandController,
   deleteBrandController,
   updateBrandController,
   getAllNameBrandController,
+  // getBrandCategoryController,
 };
