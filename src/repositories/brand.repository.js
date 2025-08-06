@@ -39,7 +39,7 @@ const updateBrandRepository = async (id, payload) => {
 const getBrandByCategory = async (idCategory) => {
   const result = sequelize.query(
     `
-      SELECT DISTINCT b.name
+      SELECT DISTINCT b.name, b.logo_url
       FROM products p
       JOIN brands b ON b.id = p.brand_id
       JOIN categories c ON c.id = p.category_id

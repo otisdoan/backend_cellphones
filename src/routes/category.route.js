@@ -6,12 +6,14 @@ const {
   updateCategoryController,
   getAllNameCategoryController,
   categoryMobileController,
+  categoryTabletController,
 } = require("../controllers/category.controller");
 const routes = express.Router();
 
 routes.get("/", getAllCategoryController);
 routes.get("/name", getAllNameCategoryController);
 routes.get("/category-mobile", categoryMobileController);
+routes.get("/category-tablet-mobile", categoryTabletController);
 routes.post("/", addCategory);
 routes.delete("/:id", deleteCategoryController);
 routes.patch("/:id", updateCategoryController);

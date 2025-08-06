@@ -63,6 +63,16 @@ const categoryMobileService = async () => {
   result.push({ title: "Điện thoại HOT ⚡", products });
   return result;
 };
+
+const categoryTabletMobileService = async () => {
+  const result = [];
+  const brand = await getBrandByCategory(10);
+  result.push({ title: "Hãng máy tính bảng", brand });
+  const products = await getProductFeatured(10);
+  result.push({ title: "Máy tính bảng HOT ⚡", products });
+  return result;
+};
+
 module.exports = {
   createCategory,
   getAllCategoryService,
@@ -70,4 +80,5 @@ module.exports = {
   updateCategoryService,
   getAllNameCategoryService,
   categoryMobileService,
+  categoryTabletMobileService,
 };
