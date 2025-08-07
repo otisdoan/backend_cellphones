@@ -10,6 +10,7 @@ const menuRoute = require("./menu.route");
 const product_variantRoute = require("./product_variant.route");
 const product_attributeRoute = require("./product_attribute.route");
 const product_reviewRoute = require("./product_review.route");
+const inventorRoute = require("./inventor.route");
 
 routes.use("/auth", authRoute);
 routes.use("/category", categoryRoute);
@@ -21,5 +22,6 @@ routes.use("/menu", menuRoute);
 routes.use("/product-variant", product_variantRoute);
 routes.use("/product-attribute", product_attributeRoute);
 routes.use("/product-review", product_reviewRoute);
+routes.use("/inventor", inventorRoute);
 
 module.exports = routes;
