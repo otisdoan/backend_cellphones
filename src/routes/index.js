@@ -13,6 +13,7 @@ const product_reviewRoute = require("./product_review.route");
 const inventorRoute = require("./inventor.route");
 const warehouseRoute = require("./warehouse.route");
 const couponsRoute = require("./inventor.route");
+const user_addressRoute = require("./user_address.route");
 
 routes.use("/auth", authRoute);
 routes.use("/category", categoryRoute);
@@ -27,5 +28,6 @@ routes.use("/product-review", product_reviewRoute);
 routes.use("/inventor", inventorRoute);
 routes.use("/warehouse", warehouseRoute);
 routes.use("/coupons", couponsRoute);
+routes.use("/user-address", user_addressRoute);
 
 module.exports = routes;
