@@ -1,23 +1,29 @@
-const productVariantRepository = require("../repositories/product_variant.repository");
+const {
+  findAllProductVariantRepository,
+  findProductVariantByIdRepository,
+  createProductVariantRepository,
+  updateProductVariantRepository,
+  deleteProductVariantRepository,
+} = require("../repositories/product_variant.repository");
 
 const getAllProductVariantService = async () => {
-  return await productVariantRepository.findAll();
+  return await findAllProductVariantRepository();
 };
 
 const getProductVariantByIdService = async (id) => {
-  return await productVariantRepository.findById(id);
+  return await findProductVariantByIdRepository(id);
 };
 
 const createProductVariantService = async (payload) => {
-  return await productVariantRepository.create(payload);
+  return await createProductVariantRepository(payload);
 };
 
 const updateProductVariantService = async (id, payload) => {
-  return await productVariantRepository.update(id, payload);
+  return await updateProductVariantRepository(id, payload);
 };
 
 const deleteProductVariantService = async (id) => {
-  return await productVariantRepository.delete(id);
+  return await deleteProductVariantRepository(id);
 };
 
 module.exports = {
