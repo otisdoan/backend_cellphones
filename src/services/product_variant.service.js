@@ -4,7 +4,17 @@ const {
   createProductVariantRepository,
   updateProductVariantRepository,
   deleteProductVariantRepository,
+  getCapacityByProductIdRepository,
+  getProductVariantsByCapacityRepository,
 } = require("../repositories/product_variant.repository");
+
+const getProductVariantsByCapacityService = async (capacity) => {
+  return await getProductVariantsByCapacityRepository(capacity);
+};
+
+const getCapacityByProductIdService = async (product_id) => {
+  return await getCapacityByProductIdRepository(product_id);
+};
 
 const getAllProductVariantService = async () => {
   return await findAllProductVariantRepository();
@@ -32,4 +42,6 @@ module.exports = {
   createProductVariantService,
   updateProductVariantService,
   deleteProductVariantService,
+  getCapacityByProductIdService,
+  getProductVariantsByCapacityService,
 };

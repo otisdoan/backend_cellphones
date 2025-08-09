@@ -4,8 +4,40 @@ const {
   createProductVariantService,
   updateProductVariantService,
   deleteProductVariantService,
+  getCapacityByProductIdService,
+  getProductVariantsByCapacityService,
 } = require("../services/product_variant.service");
 const { successResponse, errorResponse } = require("../utils/response.util");
+
+const getProductVariantsByCapacityController = async (req, res) => {
+  try {
+    const { capacity } = req.params;
+    const result = await getProductVariantsByCapacityService(capacity);
+    successResponse(
+      res,
+      "Get product variants by capacity successfully!",
+      result,
+      200
+    );
+  } catch (error) {
+    errorResponse(res, error);
+  }
+};
+
+const getCapacityByProductIdController = async (req, res) => {
+  try {
+    const { product_id } = req.params;
+    const result = await getCapacityByProductIdService(product_id);
+    successResponse(
+      res,
+      "Get capacity by product_id successfully!",
+      result,
+      200
+    );
+  } catch (error) {
+    errorResponse(res, error);
+  }
+};
 
 const getAllProductVariantController = async (req, res) => {
   try {
@@ -23,7 +55,7 @@ const getAllProductVariantController = async (req, res) => {
 
 const getProductVariantByIdController = async (req, res) => {
   try {
-    const variant = await getProductVariantByIdService(req.params.id);
+    const [variant] = await getProductVariantByIdService(req.params.id);
     if (!variant) return errorResponse(res, { message: "Not found" }, 404);
     successResponse(
       res,
@@ -70,4 +102,6 @@ module.exports = {
   createProductVariantController,
   updateProductVariantController,
   deleteProductVariantController,
+  getCapacityByProductIdController,
+  getProductVariantsByCapacityController,
 };

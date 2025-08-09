@@ -5,11 +5,13 @@ const {
   deleteProductController,
   updateProductController,
   getAllNameProductController,
+  getProductDetailBySlugController,
 } = require("../controllers/product.controller");
 const routes = express.Router();
 
 routes.get("/", getAllProductController);
 routes.get("/name", getAllNameProductController);
+routes.get("/:slug", getProductDetailBySlugController);
 routes.post("/", createProductController);
 routes.delete("/:id", deleteProductController);
 routes.patch("/:id", updateProductController);

@@ -71,6 +71,29 @@ const getProductFeatured = async (idCategory) => {
   );
 };
 
+const getProductDetailBySlugRepository = async (slug) => {
+  return await sequelize.query(
+    `
+      SELECT 
+        p.*, 
+        c.name as category_name, 
+        b.name as brand_name, 
+        ARRAY_AGG(pi.image_url) FILTER (WHERE pi.image_url IS NOT NULL) AS product_image
+      FROM products p
+      JOIN categories c on c.id = p.category_id
+      JOIN brands b on b.id = p.brand_id
+      LEFT JOIN product_images pi ON pi.product_id = p.id
+      WHERE p.slug = :slug
+      GROUP BY p.id, c.name, b.name
+      ORDER BY p.id
+    `,
+    {
+      replacements: { slug },
+      type: QueryTypes.SELECT,
+    }
+  );
+};
+
 module.exports = {
   createProductRepository,
   checkNameExist,
@@ -81,4 +104,5 @@ module.exports = {
   updateProductRepository,
   getAllNameProductRepository,
   getProductFeatured,
+  getProductDetailBySlugRepository,
 };
