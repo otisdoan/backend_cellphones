@@ -5,6 +5,7 @@ const {
   updateOrderItemService,
   deleteOrderItemService,
 } = require("../services/order_item.service");
+const { successResponse, errorResponse } = require("../utils/response.util");
 
 const getAllOrderItemsController = async (req, res, next) => {
   try {
@@ -27,12 +28,12 @@ const getOrderItemByIdController = async (req, res, next) => {
   }
 };
 
-const createOrderItemController = async (req, res, next) => {
+const createOrderItemController = async (req, res) => {
   try {
     const data = await createOrderItemService(req.body);
-    res.status(201).json({ success: true, data });
+    successResponse(res, "Create order items successfully!", data, 200);
   } catch (error) {
-    next(error);
+    errorResponse(res, error);
   }
 };
 

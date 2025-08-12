@@ -16,6 +16,7 @@ const couponsRoute = require("./inventor.route");
 const user_addressRoute = require("./user_address.route");
 const orderRoute = require("./order.route");
 const orderItemRoute = require("./order_item.route");
+const userRoute = require("./user.route");
 
 routes.use("/auth", authRoute);
 routes.use("/category", categoryRoute);
@@ -33,5 +34,6 @@ routes.use("/coupons", couponsRoute);
 routes.use("/user-address", user_addressRoute);
 routes.use("/orders", orderRoute);
 routes.use("/order-items", orderItemRoute);
+routes.use("/users", userRoute);
 
 module.exports = routes;
