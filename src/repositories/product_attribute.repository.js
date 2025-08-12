@@ -1,7 +1,9 @@
 const ProductAttribute = require("../models/product_attribute.model");
 
 const checkProductAttributeExist = async (product_id, attribute_name) => {
-  return await ProductAttribute.findOne({ where: { product_id, attribute_name } });
+  return await ProductAttribute.findOne({
+    where: { product_id, attribute_name },
+  });
 };
 
 const findAllProductAttributeRepository = async () => {
@@ -9,7 +11,7 @@ const findAllProductAttributeRepository = async () => {
 };
 
 const findProductAttributeByIdRepository = async (id) => {
-  return await ProductAttribute.findByPk(id);
+  return await ProductAttribute.findAll({ where: { product_id: id } });
 };
 
 const createProductAttributeRepository = async (payload) => {
