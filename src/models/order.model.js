@@ -42,7 +42,7 @@ const Order = sequelize.define(
       defaultValue: "pending",
       allowNull: true,
     },
-    payment_methc: {
+    payment_method: {
       type: DataTypes.STRING(50),
       allowNull: true,
     },
@@ -50,7 +50,7 @@ const Order = sequelize.define(
       type: DataTypes.DECIMAL(15, 2),
       allowNull: false,
     },
-    discount_amou: {
+    discount_amount: {
       type: DataTypes.DECIMAL(15, 2),
       allowNull: true,
       defaultValue: 0,

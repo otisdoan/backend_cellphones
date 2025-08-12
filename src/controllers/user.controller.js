@@ -5,6 +5,7 @@ const {
   updateUserService,
   deleteUserService,
 } = require("../services/user.service");
+const { successResponse, errorResponse } = require("../utils/response.util");
 
 const getAllUsersController = async (req, res, next) => {
   try {
@@ -27,12 +28,12 @@ const getUserByIdController = async (req, res, next) => {
   }
 };
 
-const createUserController = async (req, res, next) => {
+const createUserController = async (req, res) => {
   try {
     const data = await createUserService(req.body);
-    res.status(201).json({ success: true, data });
+    successResponse(res, "Create user sucessfully!", data, 201);
   } catch (error) {
-    next(error);
+    errorResponse(res, error);
   }
 };
 
