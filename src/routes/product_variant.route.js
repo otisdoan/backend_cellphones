@@ -7,10 +7,12 @@ const {
   deleteProductVariantController,
   getCapacityByProductIdController,
   getProductVariantsByCapacityController,
+  getProductVariantByArrayIdController,
 } = require("../controllers/product_variant.controller");
 const routes = express.Router();
 
 routes.get("/", getAllProductVariantController);
+routes.get("/many-id", getProductVariantByArrayIdController);
 routes.get("/:id", getProductVariantByIdController);
 routes.get("/capacity/:product_id", getCapacityByProductIdController);
 routes.get("/by-capacity/:capacity", getProductVariantsByCapacityController);

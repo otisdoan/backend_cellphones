@@ -1,3 +1,7 @@
+const { QueryTypes } = require("sequelize");
+const sequelize = require("../configs/database.config");
+const ProductVariant = require("../models/product_variant.model");
+
 const getProductVariantsByCapacityRepository = async (capacity) => {
   const result = await sequelize.query(
     `SELECT * FROM product_variants WHERE capacity = :capacity`,
@@ -5,8 +9,6 @@ const getProductVariantsByCapacityRepository = async (capacity) => {
   );
   return result;
 };
-const sequelize = require("../configs/database.config");
-const ProductVariant = require("../models/product_variant.model");
 
 const getCapacityByProductIdRepository = async (product_id) => {
   const result = await sequelize.query(
@@ -44,6 +46,17 @@ const deleteProductVariantRepository = async (id) => {
   return await ProductVariant.destroy({ where: { id } });
 };
 
+const getProductVariantByArrayIdRepository = async (ids) => {
+  return await sequelize.query(
+    `
+        SELECT *
+        FROM product_variants
+        WHERE id IN (${ids})
+    `,
+    { replacements: { ids }, type: QueryTypes.SELECT }
+  );
+};
+
 module.exports = {
   checkProductVariantExist,
   findAllProductVariantRepository,
@@ -53,4 +66,5 @@ module.exports = {
   deleteProductVariantRepository,
   getCapacityByProductIdRepository,
   getProductVariantsByCapacityRepository,
+  getProductVariantByArrayIdRepository,
 };

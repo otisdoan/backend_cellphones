@@ -6,6 +6,7 @@ const {
   deleteProductVariantService,
   getCapacityByProductIdService,
   getProductVariantsByCapacityService,
+  getProductVariantByArrayIdService,
 } = require("../services/product_variant.service");
 const { successResponse, errorResponse } = require("../utils/response.util");
 
@@ -96,6 +97,16 @@ const deleteProductVariantController = async (req, res) => {
   }
 };
 
+const getProductVariantByArrayIdController = async (req, res) => {
+  try {
+    const ids = req.query.ids;
+    const product = await getProductVariantByArrayIdService(ids);
+    successResponse(res, "Get product variant by array id!", product, 200);
+  } catch (error) {
+    errorResponse(res, error);
+  }
+};
+
 module.exports = {
   getAllProductVariantController,
   getProductVariantByIdController,
@@ -104,4 +115,5 @@ module.exports = {
   deleteProductVariantController,
   getCapacityByProductIdController,
   getProductVariantsByCapacityController,
+  getProductVariantByArrayIdController,
 };

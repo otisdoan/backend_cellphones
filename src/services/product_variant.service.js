@@ -6,6 +6,7 @@ const {
   deleteProductVariantRepository,
   getCapacityByProductIdRepository,
   getProductVariantsByCapacityRepository,
+  getProductVariantByArrayIdRepository,
 } = require("../repositories/product_variant.repository");
 
 const getProductVariantsByCapacityService = async (capacity) => {
@@ -36,6 +37,10 @@ const deleteProductVariantService = async (id) => {
   return await deleteProductVariantRepository(id);
 };
 
+const getProductVariantByArrayIdService = async (ids) => {
+  return await getProductVariantByArrayIdRepository(ids);
+};
+
 module.exports = {
   getAllProductVariantService,
   getProductVariantByIdService,
@@ -44,4 +49,5 @@ module.exports = {
   deleteProductVariantService,
   getCapacityByProductIdService,
   getProductVariantsByCapacityService,
+  getProductVariantByArrayIdService,
 };

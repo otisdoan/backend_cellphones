@@ -58,10 +58,24 @@ const deleteCartItemController = async (req, res) => {
   }
 };
 
+const getCartItemByUserIdController = async (req, res) => {
+  try {
+    const user_id = req.params.user_id;
+    successResponse(
+      res,
+      "Get cart item by user id successfully!",
+      user_id,
+      200
+    );
+  } catch (error) {
+    errorResponse(res, error);
+  }
+};
 module.exports = {
   getAllCartItemsController,
   getCartItemByIdController,
   createCartItemController,
   updateCartItemController,
   deleteCartItemController,
+  getCartItemByUserIdController,
 };

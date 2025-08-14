@@ -5,7 +5,7 @@ const findAllCartItemRepository = async () => {
 };
 
 const findCartItemByIdRepository = async (id) => {
-  return await CartItem.findByPk(id);
+  return await CartItem.findAll({ where: { user_id: id } });
 };
 
 const createCartItemRepository = async (payload) => {
@@ -24,10 +24,15 @@ const deleteCartItemRepository = async (id) => {
   return await CartItem.destroy({ where: { id } });
 };
 
+const getCartItemByUserIdRepository = async (user_id) => {
+  return await CartItem.findAll({ where: { user_id } });
+};
+
 module.exports = {
   findAllCartItemRepository,
   findCartItemByIdRepository,
   createCartItemRepository,
   updateCartItemRepository,
   deleteCartItemRepository,
+  getCartItemByUserIdRepository,
 };

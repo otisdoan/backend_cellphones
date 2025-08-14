@@ -4,6 +4,7 @@ const {
   createCartItemRepository,
   updateCartItemRepository,
   deleteCartItemRepository,
+  getCartItemByUserIdRepository,
 } = require("../repositories/cart_item.repository");
 
 const getAllCartItemsService = async () => {
@@ -26,10 +27,15 @@ const deleteCartItemService = async (id) => {
   return await deleteCartItemRepository(id);
 };
 
+const getCartItemByUserIdService = async (user_id) => {
+  return await getCartItemByUserIdRepository(user_id);
+};
+
 module.exports = {
   getAllCartItemsService,
   getCartItemByIdService,
   createCartItemService,
   updateCartItemService,
   deleteCartItemService,
+  getCartItemByUserIdService,
 };
