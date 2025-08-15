@@ -6,7 +6,21 @@ const {
   getAllNameCategoryService,
   categoryMobileService,
   categoryTabletMobileService,
+  getCategoryByIdService,
 } = require("../services/category.service");
+
+const getCategoryByIdController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const category = await getCategoryByIdService(id);
+    if (!category) {
+      return successResponse(res, "Category not found!", null, 404);
+    }
+    successResponse(res, "Get category by id successfully!", category, 200);
+  } catch (error) {
+    errorResponse(res, error);
+  }
+};
 
 const { successResponse, errorResponse } = require("../utils/response.util");
 
@@ -89,4 +103,5 @@ module.exports = {
   getAllNameCategoryController,
   categoryMobileController,
   categoryTabletController,
+  getCategoryByIdController,
 };

@@ -5,10 +5,12 @@ const {
   deleteBrandController,
   updateBrandController,
   getAllNameBrandController,
+  getBrandByIdController,
 } = require("../controllers/brand.controller");
 const routes = express.Router();
 
 routes.get("/", getAllBrandController);
+routes.get("/:id/detail", getBrandByIdController);
 routes.get("/name", getAllNameBrandController);
 routes.post("/", createBrandController);
 routes.delete("/:id", deleteBrandController);

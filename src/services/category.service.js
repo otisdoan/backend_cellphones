@@ -7,7 +7,12 @@ const {
   deleteCategoryRepository,
   updateCategoryRepository,
   getAllNameCategoryRepository,
+  getCategoryByIdRepository,
 } = require("../repositories/category.repository");
+
+const getCategoryByIdService = async (id) => {
+  return await getCategoryByIdRepository(id);
+};
 const { getProductFeatured } = require("../repositories/product.repository");
 const recursionCategory = require("../utils/recursionCategory");
 
@@ -31,11 +36,6 @@ const deleteCategoryService = async (id) => {
 };
 
 const updateCategoryService = async (id, payload) => {
-  const { name } = payload;
-
-  const nameCategory = await checkCategoryExist(name);
-  if (nameCategory) throw new Error("Category is already existed!");
-
   return await updateCategoryRepository(id, payload);
 };
 
@@ -81,4 +81,5 @@ module.exports = {
   getAllNameCategoryService,
   categoryMobileService,
   categoryTabletMobileService,
+  getCategoryByIdService,
 };

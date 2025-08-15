@@ -5,6 +5,11 @@ const checkCategoryExist = async (name) => {
   return await Category.findOne({ where: { name } });
 };
 
+const getCategoryByIdRepository = async (id) => {
+  const [result] = await Category.findAll({ where: { id } });
+  return result;
+};
+
 const checkSlugExist = async (slug) => {
   return await Category.findOne({ where: { slug } });
 };
@@ -14,7 +19,7 @@ const addCategory = async (category) => {
 };
 
 const getAllCategoryRepository = async () => {
-  return await Category.findAll({ raw: true });
+  return await Category.findAll({ raw: true, order: [["id"]] });
 };
 
 const deleteCategoryRepository = async (id) => {
@@ -54,4 +59,5 @@ module.exports = {
   deleteCategoryRepository,
   updateCategoryRepository,
   getAllNameCategoryRepository,
+  getCategoryByIdRepository,
 };

@@ -53,6 +53,11 @@ const getBrandByCategory = async (idCategory) => {
   return result;
 };
 
+const getBrandByIdRepository = async (id) => {
+  const [result] = await Brand.findAll({ where: { id } });
+  return result;
+};
+
 module.exports = {
   createBrandRepository,
   checkBrandExist,
@@ -62,4 +67,5 @@ module.exports = {
   updateBrandRepository,
   getAllNameBrandRepository,
   getBrandByCategory,
+  getBrandByIdRepository,
 };

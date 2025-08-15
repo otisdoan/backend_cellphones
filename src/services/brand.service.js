@@ -7,6 +7,7 @@ const {
   updateBrandRepository,
   getAllNameBrandRepository,
   getBrandByCategory,
+  getBrandByIdRepository,
 } = require("../repositories/brand.repository");
 
 const createBrandService = async (payload) => {
@@ -50,6 +51,10 @@ const getAllNameBrandService = async () => {
   return customResult;
 };
 
+const getBrandByIdService = async (id) => {
+  return await getBrandByIdRepository(id);
+};
+
 // const getBrandByCategoryService = async (idCategory) => {
 //   return await getBrandByCategory(idCategory);
 // };
@@ -60,5 +65,6 @@ module.exports = {
   deleteBrandService,
   updateBrandService,
   getAllNameBrandService,
+  getBrandByIdService,
   // getBrandByCategoryService,
 };
