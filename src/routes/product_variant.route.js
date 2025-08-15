@@ -13,6 +13,7 @@ const routes = express.Router();
 
 routes.get("/", getAllProductVariantController);
 routes.get("/many-id", getProductVariantByArrayIdController);
+routes.get("/:id/detail", getProductVariantByIdController);
 routes.get("/:id", getProductVariantByIdController);
 routes.get("/capacity/:product_id", getCapacityByProductIdController);
 routes.get("/by-capacity/:capacity", getProductVariantsByCapacityController);

@@ -8,6 +8,7 @@ const getAllImageRepository = async () => {
       SELECT pi.*, p.name
       FROM products p
       JOIN product_images pi ON pi.product_id = p.id
+      ORDER BY pi.id
     `,
     {
       type: QueryTypes.SELECT,
@@ -28,9 +29,15 @@ const updateImageRepository = async (id, payload) => {
   return await ProductImage.update(payload, { where: { id } });
 };
 
+const getProductImageByIdRepository = async (id) => {
+  const [result] = await ProductImage.findAll({ where: { id } });
+  return result;
+};
+
 module.exports = {
   getAllImageRepository,
   createImageRepository,
   deleteImageRepository,
   updateImageRepository,
+  getProductImageByIdRepository,
 };

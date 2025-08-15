@@ -23,7 +23,15 @@ const checkProductVariantExist = async (sku) => {
 };
 
 const findAllProductVariantRepository = async () => {
-  return await ProductVariant.findAll();
+  return await sequelize.query(
+    `
+      SELECT pv.*, p.name
+      FROM product_variants pv
+      JOIN products p ON p.id = pv.product_id
+      ORDER BY pv.id
+    `,
+    { type: QueryTypes.SELECT }
+  );
 };
 
 const findProductVariantByIdRepository = async (id) => {

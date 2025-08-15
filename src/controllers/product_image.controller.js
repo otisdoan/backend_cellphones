@@ -3,6 +3,7 @@ const {
   createImageService,
   deleteImageService,
   updateImageService,
+  getProductImageByIdService,
 } = require("../services/product_image.service");
 const { errorResponse, successResponse } = require("../utils/response.util");
 
@@ -52,9 +53,28 @@ const updateImageController = async (req, res) => {
   }
 };
 
+const getProductImageByIdController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const productImage = await getProductImageByIdService(id);
+    if (!productImage) {
+      return successResponse(res, "Product image not found!", null, 404);
+    }
+    successResponse(
+      res,
+      "Get product image by id successfully!",
+      productImage,
+      200
+    );
+  } catch (error) {
+    errorResponse(res, error);
+  }
+};
+
 module.exports = {
   getAllImageController,
   createImageController,
   deleteImageController,
   updateImageController,
+  getProductImageByIdController,
 };

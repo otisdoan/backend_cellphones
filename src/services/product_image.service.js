@@ -3,6 +3,7 @@ const {
   createImageRepository,
   deleteImageRepository,
   updateImageRepository,
+  getProductImageByIdRepository,
 } = require("../repositories/product_image.repository");
 
 const getAllImageService = async () => {
@@ -21,9 +22,14 @@ const updateImageService = async (id, payload) => {
   return await updateImageRepository(id, payload);
 };
 
+const getProductImageByIdService = async (id) => {
+  return await getProductImageByIdRepository(id);
+};
+
 module.exports = {
   getAllImageService,
   createImageService,
   deleteImageService,
   updateImageService,
+  getProductImageByIdService,
 };
