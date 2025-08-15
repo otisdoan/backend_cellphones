@@ -6,10 +6,12 @@ const {
   updateProductController,
   getAllNameProductController,
   getProductDetailBySlugController,
+  getProductByIdController,
 } = require("../controllers/product.controller");
 const routes = express.Router();
 
 routes.get("/", getAllProductController);
+routes.get("/:id/detail", getProductByIdController);
 routes.get("/name", getAllNameProductController);
 routes.get("/:slug", getProductDetailBySlugController);
 routes.post("/", createProductController);

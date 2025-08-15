@@ -7,6 +7,7 @@ const {
   updateProductRepository,
   getAllNameProductRepository,
   getProductDetailBySlugRepository,
+  getProductByIdRepository,
 } = require("../repositories/product.repository");
 
 const createProductService = async (payload) => {
@@ -64,6 +65,10 @@ const getProductDetailBySlugService = async (slug) => {
   return product;
 };
 
+const getProductByIdService = async (id) => {
+  return await getProductByIdRepository(id);
+};
+
 module.exports = {
   createProductService,
   getAllProductService,
@@ -71,4 +76,5 @@ module.exports = {
   updateProductService,
   getAllNameProductService,
   getProductDetailBySlugService,
+  getProductByIdService,
 };

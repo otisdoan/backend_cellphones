@@ -94,6 +94,11 @@ const getProductDetailBySlugRepository = async (slug) => {
   );
 };
 
+const getProductByIdRepository = async (id) => {
+  const [result] = await Product.findAll({ where: { id } });
+  return result;
+};
+
 module.exports = {
   createProductRepository,
   checkNameExist,
@@ -105,4 +110,5 @@ module.exports = {
   getAllNameProductRepository,
   getProductFeatured,
   getProductDetailBySlugRepository,
+  getProductByIdRepository,
 };
