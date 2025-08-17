@@ -1,17 +1,18 @@
 const {
   findAllProductAttributeRepository,
-  findProductAttributeByIdRepository,
+  findProductAttributeByIdProductRepository,
   createProductAttributeRepository,
   updateProductAttributeRepository,
   deleteProductAttributeRepository,
+  getProductAttributeByIdRepository,
 } = require("../repositories/product_attribute.repository");
 
 const getAllProductAttributeService = async () => {
   return await findAllProductAttributeRepository();
 };
 
-const getProductAttributeByIdService = async (id) => {
-  return await findProductAttributeByIdRepository(id);
+const getProductAttributeByIdProductService = async (id) => {
+  return await findProductAttributeByIdProductRepository(id);
 };
 
 const createProductAttributeService = async (payload) => {
@@ -26,10 +27,14 @@ const deleteProductAttributeService = async (id) => {
   return await deleteProductAttributeRepository(id);
 };
 
+const getProductAttributeByIdService = async (id) => {
+  return await getProductAttributeByIdRepository(id);
+};
 module.exports = {
   getAllProductAttributeService,
-  getProductAttributeByIdService,
+  getProductAttributeByIdProductService,
   createProductAttributeService,
   updateProductAttributeService,
   deleteProductAttributeService,
+  getProductAttributeByIdService,
 };

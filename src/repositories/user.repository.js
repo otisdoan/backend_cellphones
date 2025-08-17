@@ -1,11 +1,11 @@
 const User = require("../models/user.model");
 
 const findAllUserRepository = async () => {
-  return await User.findAll();
+  return await User.findAll({ order: [["id"]] });
 };
 
 const findUserByIdRepository = async (id) => {
-  return await User.findByPk(id);
+  return await User.findOne({ where: { id } });
 };
 
 const createUserRepository = async (payload) => {

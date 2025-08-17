@@ -37,15 +37,13 @@ const createUserController = async (req, res) => {
   }
 };
 
-const updateUserController = async (req, res, next) => {
+const updateUserController = async (req, res) => {
   try {
     const { id } = req.params;
     const data = await updateUserService(id, req.body);
-    if (!data)
-      return res.status(404).json({ success: false, message: "Not found" });
-    res.json({ success: true, data });
+    successResponse(res, "Update user successfully!", data, 200);
   } catch (error) {
-    next(error);
+    errorResponse(res, error);
   }
 };
 

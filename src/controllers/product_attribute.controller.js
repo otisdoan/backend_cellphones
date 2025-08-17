@@ -4,6 +4,7 @@ const {
   createProductAttributeService,
   updateProductAttributeService,
   deleteProductAttributeService,
+  getProductAttributeByIdProductService,
 } = require("../services/product_attribute.service");
 const { successResponse, errorResponse } = require("../utils/response.util");
 
@@ -21,9 +22,11 @@ const getAllProductAttributeController = async (req, res) => {
   }
 };
 
-const getProductAttributeByIdController = async (req, res) => {
+const getProductAttributeByIdProductController = async (req, res) => {
   try {
-    const attribute = await getProductAttributeByIdService(req.params.id);
+    const attribute = await getProductAttributeByIdProductService(
+      req.params.id
+    );
     if (!attribute) return errorResponse(res, { message: "Not found" }, 404);
     successResponse(
       res,
@@ -68,6 +71,24 @@ const updateProductAttributeController = async (req, res) => {
   }
 };
 
+const getProductAttributeByIdController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const attribute = await getProductAttributeByIdService(id);
+    if (!attribute) {
+      return successResponse(res, "Product attribute not found!", null, 404);
+    }
+    successResponse(
+      res,
+      "Get product attribute by id successfully!",
+      attribute,
+      200
+    );
+  } catch (error) {
+    errorResponse(res, error);
+  }
+};
+
 const deleteProductAttributeController = async (req, res) => {
   try {
     await deleteProductAttributeService(req.params.id);
@@ -80,6 +101,7 @@ const deleteProductAttributeController = async (req, res) => {
 module.exports = {
   getAllProductAttributeController,
   getProductAttributeByIdController,
+  getProductAttributeByIdProductController,
   createProductAttributeController,
   updateProductAttributeController,
   deleteProductAttributeController,

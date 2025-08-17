@@ -35,7 +35,16 @@ const findAllProductVariantRepository = async () => {
 };
 
 const findProductVariantByIdRepository = async (id) => {
-  return await ProductVariant.findAll({ where: { id } });
+  return await sequelize.query(
+    `
+      SELECT pv.*, p.name
+      FROM product_variants pv
+      JOIN products p ON p.id = pv.product_id
+      WHERE pv.id = :id
+      ORDER BY pv.id
+    `,
+    { replacements: { id }, type: QueryTypes.SELECT }
+  );
 };
 
 const createProductVariantRepository = async (payload) => {

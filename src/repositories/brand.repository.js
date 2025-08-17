@@ -15,7 +15,7 @@ const checkSlugExist = async (slug) => {
 };
 
 const getAllBrandRepository = async () => {
-  return await Brand.findAll();
+  return await Brand.findAll({ order: [["id"]] });
 };
 
 const deleteBrandRepository = async (id) => {

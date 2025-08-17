@@ -12,23 +12,23 @@ const Product = sequelize.define(
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     slug: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     sku: {
       type: DataTypes.STRING(100),
-      allowNull: false,
+      allowNull: true,
     },
     category_id: {
       type: DataTypes.BIGINT,
-      allowNull: false,
+      allowNull: true,
     },
     brand_id: {
       type: DataTypes.BIGINT,
-      allowNull: false,
+      allowNull: true,
     },
     short_description: {
       type: DataTypes.TEXT,
@@ -38,14 +38,14 @@ const Product = sequelize.define(
     },
     price: {
       type: DataTypes.DECIMAL(15, 2),
-      allowNull: false,
+      allowNull: true,
     },
     sale_price: {
       type: DataTypes.DECIMAL(15, 2),
     },
     cost_price: {
       type: DataTypes.DECIMAL(15, 2),
-      allowNull: false,
+      allowNull: true,
     },
     weight: {
       type: DataTypes.DECIMAL(8, 2),
@@ -63,7 +63,7 @@ const Product = sequelize.define(
     },
     status: {
       type: DataTypes.ENUM("active", "inactive", "out_of_stock"),
-      allowNull: false,
+      allowNull: true,
       defaultValue: "active",
     },
     rating_average: {
