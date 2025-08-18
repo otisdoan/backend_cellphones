@@ -29,11 +29,18 @@ const login = async (req, res) => {
   try {
     const { password_login, phone } = req.body;
     const user = await getUserByPhone(phone);
-    await comparePassword(password_login, user.dataValues.password_hash);
-    const token = await generateToken(user.dataValues);
+    const { id, role } = user;
+    await comparePassword(password_login, user.password_hash);
+    const token = await generateToken(
+      {
+        id,
+        role,
+      },
+      res
+    );
     await saveToken(token);
     successResponse(res, "Login successfully!", {
-      ...user.dataValues,
+      ...{ id, role },
       ...token,
     });
   } catch (error) {

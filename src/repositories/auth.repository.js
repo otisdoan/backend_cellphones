@@ -13,7 +13,7 @@ const createUser = async (data) => {
 };
 
 const findUserByPhone = async (phone) => {
-  return await User.findOne({ where: { phone } });
+  return await User.findOne({ where: { phone }, raw: true });
 };
 
 const findUserByEmail = async (email) => {

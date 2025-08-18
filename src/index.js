@@ -6,7 +6,6 @@ const port = process.env.PORT;
 const allRoute = require("./routes/index");
 const cors = require("cors");
 
-app.use(cors());
 app.use(
   cors({
     origin: "http://localhost:5173",
