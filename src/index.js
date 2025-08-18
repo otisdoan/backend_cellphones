@@ -5,6 +5,7 @@ const app = express();
 const port = process.env.PORT;
 const allRoute = require("./routes/index");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 app.use(
   cors({
@@ -14,6 +15,7 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

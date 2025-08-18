@@ -18,8 +18,9 @@ const getAllUsersController = async (req, res, next) => {
 
 const getUserByIdController = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const data = await getUserByIdService(id);
+    const { id_params } = req.params;
+    const { id } = req.user_infor;
+    const data = await getUserByIdService(id_params ?? id);
     if (!data)
       return res.status(404).json({ success: false, message: "Not found" });
     res.json({ success: true, data });

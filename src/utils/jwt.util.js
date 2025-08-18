@@ -10,7 +10,7 @@ const generateToken = async (payload, res) => {
   });
   res.cookie("access_token", access_token, {
     httpOnly: false,
-    maxAge: 60 * 1000,
+    maxAge: 5 * 60 * 1000,
   });
   res.cookie("refresh_token", refresh_token, {
     httpOnly: true,
