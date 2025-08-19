@@ -9,7 +9,7 @@ const { saveToken } = require("../services/token.service");
 const { hashPassword, comparePassword } = require("../utils/bcrypt.util");
 const { generateToken } = require("../utils/jwt.util");
 const { successResponse, errorResponse } = require("../utils/response.util");
-const { OAuth2Client } = require("google-auth-library");
+const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
   try {
@@ -70,8 +70,31 @@ const loginWithGoogle = async (req, res) => {
     errorResponse(res, error);
   }
 };
+
+const refreshTokenController = async (req, res) => {
+  try {
+    const refreshToken = req.cookies.refresh_token;
+    console.log(refreshToken);
+    if (!refreshToken) {
+      throw new Error("No refresh token provided");
+    }
+    const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_TOKEN);
+
+    const payload = {
+      id: decoded.id,
+      email: decoded.email,
+      role: decoded.role,
+    };
+    const token = generateToken(payload, res);
+    successResponse(res, "", "", 200);
+  } catch (error) {
+    return errorResponse(res, error);
+  }
+};
+
 module.exports = {
   register,
   login,
   loginWithGoogle,
+  refreshTokenController,
 };

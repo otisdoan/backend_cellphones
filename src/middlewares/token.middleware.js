@@ -14,7 +14,7 @@ const reuqireToken = (req, res, next) => {
     req.user_infor = decoded;
     next();
   } catch (error) {
-    errorResponse(res, error);
+    errorResponse(res, error, 401);
   }
 };
 

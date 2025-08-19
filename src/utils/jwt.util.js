@@ -1,16 +1,18 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-const generateToken = async (payload, res) => {
-  const access_token = await jwt.sign(payload, process.env.JWT_ACCESS_TOKEN, {
+const generateToken = (payload, res) => {
+  const access_token = jwt.sign(payload, process.env.JWT_ACCESS_TOKEN, {
     expiresIn: "5m",
   });
-  const refresh_token = await jwt.sign(payload, process.env.JWT_REFRESH_TOKEN, {
+  const refresh_token = jwt.sign(payload, process.env.JWT_REFRESH_TOKEN, {
     expiresIn: "7d",
   });
   res.cookie("access_token", access_token, {
     httpOnly: false,
-    maxAge: 5 * 60 * 1000,
+    maxAge: 60 * 1000,
+    secure: false,
+    sameSite: "lax",
   });
   res.cookie("refresh_token", refresh_token, {
     httpOnly: true,

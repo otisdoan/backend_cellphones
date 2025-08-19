@@ -16,16 +16,15 @@ const getAllUsersController = async (req, res, next) => {
   }
 };
 
-const getUserByIdController = async (req, res, next) => {
+const getUserByIdController = async (req, res) => {
   try {
     const { id_params } = req.params;
     const { id } = req.user_infor;
     const data = await getUserByIdService(id_params ?? id);
-    if (!data)
-      return res.status(404).json({ success: false, message: "Not found" });
+    successResponse(res, "Get user by id successfully!", data, 200);
     res.json({ success: true, data });
   } catch (error) {
-    next(error);
+    errorResponse(res, error);
   }
 };
 
