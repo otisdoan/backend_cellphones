@@ -74,7 +74,6 @@ const loginWithGoogle = async (req, res) => {
 const refreshTokenController = async (req, res) => {
   try {
     const refreshToken = req.cookies.refresh_token;
-    console.log(refreshToken);
     if (!refreshToken) {
       throw new Error("No refresh token provided");
     }
@@ -88,7 +87,7 @@ const refreshTokenController = async (req, res) => {
     const token = generateToken(payload, res);
     successResponse(res, "", "", 200);
   } catch (error) {
-    return errorResponse(res, error);
+    errorResponse(res, error);
   }
 };
 

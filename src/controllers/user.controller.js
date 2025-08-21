@@ -22,7 +22,6 @@ const getUserByIdController = async (req, res) => {
     const { id } = req.user_infor;
     const data = await getUserByIdService(id_params ?? id);
     successResponse(res, "Get user by id successfully!", data, 200);
-    res.json({ success: true, data });
   } catch (error) {
     errorResponse(res, error);
   }
