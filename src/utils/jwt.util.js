@@ -21,7 +21,6 @@ const generateToken = (payload, res) => {
     path: "/",
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
-  return { access_token, refresh_token };
 };
 
 module.exports = {
