@@ -13,10 +13,10 @@ const routes = express.Router();
 
 routes.get("/", getAllProductVariantController);
 routes.get("/many-id", getProductVariantByArrayIdController);
+routes.get("/by-capacity", getProductVariantsByCapacityController);
+routes.get("/capacity/:group_name", getCapacityByProductIdController);
 routes.get("/:id/detail", getProductVariantByIdController);
 routes.get("/:id", getProductVariantByIdController);
-routes.get("/capacity/:product_id", getCapacityByProductIdController);
-routes.get("/by-capacity/:capacity", getProductVariantsByCapacityController);
 routes.post("/", createProductVariantController);
 routes.patch("/:id", updateProductVariantController);
 routes.delete("/:id", deleteProductVariantController);

@@ -9,12 +9,12 @@ const {
   getProductVariantByArrayIdRepository,
 } = require("../repositories/product_variant.repository");
 
-const getProductVariantsByCapacityService = async (capacity) => {
-  return await getProductVariantsByCapacityRepository(capacity);
+const getProductVariantsByCapacityService = async (capacity, group_name) => {
+  return await getProductVariantsByCapacityRepository(capacity, group_name);
 };
 
-const getCapacityByProductIdService = async (product_id) => {
-  return await getCapacityByProductIdRepository(product_id);
+const getCapacityByProductIdService = async (group_name) => {
+  return await getCapacityByProductIdRepository(group_name);
 };
 
 const getAllProductVariantService = async () => {

@@ -2,18 +2,27 @@ const { QueryTypes } = require("sequelize");
 const sequelize = require("../configs/database.config");
 const ProductVariant = require("../models/product_variant.model");
 
-const getProductVariantsByCapacityRepository = async (capacity) => {
+const getProductVariantsByCapacityRepository = async (capacity, group_name) => {
   const result = await sequelize.query(
-    `SELECT * FROM product_variants WHERE capacity = :capacity`,
-    { replacements: { capacity }, type: sequelize.QueryTypes.SELECT }
+    ` SELECT pv.*
+      FROM product_variants pv
+      JOIN products p ON p.id = pv.product_id
+      WHERE p.group_name = :group_name AND pv.capacity = :capacity`,
+    {
+      replacements: { capacity, group_name },
+      type: sequelize.QueryTypes.SELECT,
+    }
   );
   return result;
 };
 
-const getCapacityByProductIdRepository = async (product_id) => {
+const getCapacityByProductIdRepository = async (group_name) => {
   const result = await sequelize.query(
-    `SELECT DISTINCT capacity FROM product_variants WHERE product_id = :product_id`,
-    { replacements: { product_id }, type: sequelize.QueryTypes.SELECT }
+    ` SELECT distinct pv.capacity
+      FROM product_variants pv
+      JOIN products p ON p.id = pv.product_id
+      WHERE p.group_name = :group_name`,
+    { replacements: { group_name }, type: sequelize.QueryTypes.SELECT }
   );
   return result;
 };

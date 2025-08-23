@@ -12,8 +12,11 @@ const { successResponse, errorResponse } = require("../utils/response.util");
 
 const getProductVariantsByCapacityController = async (req, res) => {
   try {
-    const { capacity } = req.params;
-    const result = await getProductVariantsByCapacityService(capacity);
+    const { capacity, group_name } = req.query;
+    const result = await getProductVariantsByCapacityService(
+      capacity,
+      group_name
+    );
     successResponse(
       res,
       "Get product variants by capacity successfully!",
@@ -27,8 +30,8 @@ const getProductVariantsByCapacityController = async (req, res) => {
 
 const getCapacityByProductIdController = async (req, res) => {
   try {
-    const { product_id } = req.params;
-    const result = await getCapacityByProductIdService(product_id);
+    const { group_name } = req.params;
+    const result = await getCapacityByProductIdService(group_name);
     successResponse(
       res,
       "Get capacity by product_id successfully!",
