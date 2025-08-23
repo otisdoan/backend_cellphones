@@ -46,35 +46,7 @@ const findAllProductVariantRepository = async () => {
 const findProductVariantByIdRepository = async (id) => {
   return await sequelize.query(
     `
-      SELECT 
-        pv.id,
-        pv.product_id,
-        pv.variant_name,
-        pv.sku,
-        pv.price,
-        pv.sale_price,
-        pv.stock_quantity,
-        pv.image_url,
-        pv.is_active,
-        pv.created_at,
-        pv.capacity,
-        pv.updated_at,
-        p.name,
-        p.slug,
-        p.category_id,
-        p.brand_id,
-        p.short_description,
-        p.full_description,
-        p.cost_price,
-        p.weight,
-        p.dimensions,
-        p.warranty_period,
-        p.is_featured,
-        p.status,
-        p.rating_average,
-        p.rating_count,
-        p.meta_title,
-        p.meta_description
+      SELECT pv.*
       FROM product_variants pv
       JOIN products p ON p.id = pv.product_id
       WHERE pv.id = :id
