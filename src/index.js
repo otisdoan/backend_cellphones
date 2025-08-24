@@ -9,7 +9,7 @@ const cookieParser = require("cookie-parser");
 
 app.use(
   cors({
-    origin: "https://frontend-cellphones.vercel.app",
+    origin: "*",
     credentials: true,
     methods: ["GET", "POST", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
