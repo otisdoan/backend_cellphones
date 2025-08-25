@@ -11,13 +11,13 @@ const generateToken = (payload, res) => {
   res.cookie("access_token", access_token, {
     httpOnly: false,
     maxAge: 60 * 1000,
-    secure: false,
-    sameSite: "lax",
+    secure: true,
+    sameSite: "None",
   });
   res.cookie("refresh_token", refresh_token, {
     httpOnly: true,
-    secure: false,
-    sameSite: "lax",
+    secure: true,
+    sameSite: "None",
     path: "/",
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
