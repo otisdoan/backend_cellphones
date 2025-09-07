@@ -12,12 +12,12 @@ const generateToken = (payload, res) => {
     httpOnly: false,
     maxAge: 60 * 1000,
     secure: true,
-    sameSite: "None",
+    sameSite: "none",
   });
   res.cookie("refresh_token", refresh_token, {
     httpOnly: true,
     secure: true,
-    sameSite: "None",
+    sameSite: "none",
     path: "/",
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });

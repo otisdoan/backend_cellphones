@@ -60,7 +60,7 @@ const loginWithGoogle = async (req, res) => {
     // console.log(payload);
     const googleUser = await getGoogleUserInfo(token);
     const user = await getUserByEmail(googleUser.email);
-    const tokens = await generateToken(user.dataValues);
+    const tokens = await generateToken(user.dataValues, res);
     await saveToken(tokens);
     successResponse(res, "Login successfully!", {
       ...user.dataValues,
