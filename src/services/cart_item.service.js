@@ -18,10 +18,14 @@ const getCartItemByIdService = async (id) => {
 
 const createCartItemService = async (payload) => {
   const { product_id, variant_id, quantity } = payload;
-
   const existingItems = await checkItemExistRepository(product_id, variant_id);
-  if (existingItems && existingItems.length > 0) {
-    quantity++;
+
+  if (existingItems) {
+    const updatedItem = await updateCartItemRepository(existingItems.id, {
+      ...payload,
+      quantity: existingItems.quantity + (Number(quantity) || 1),
+    });
+    return updatedItem;
   }
   return await createCartItemRepository(payload);
 };

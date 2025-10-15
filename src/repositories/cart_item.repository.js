@@ -41,7 +41,11 @@ const getCartItemByUserIdRepository = async (user_id) => {
 };
 
 const checkItemExistRepository = async (product_id, variant_id) => {
-  return await CartItem.findOne({ where: { product_id, variant_id } });
+  const result = await CartItem.findOne({
+    where: { product_id, variant_id },
+    raw: true,
+  });
+  return result;
 };
 
 module.exports = {
