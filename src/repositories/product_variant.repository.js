@@ -76,7 +76,8 @@ const getProductVariantByArrayIdRepository = async (ids) => {
   return await sequelize.query(
     `
         SELECT *
-        FROM product_variants
+        FROM product_variants pv
+        JOIN cart_items ci ON pv.product_id = ci.product_id
         WHERE id IN (${ids})
     `,
     { replacements: { ids }, type: QueryTypes.SELECT }
