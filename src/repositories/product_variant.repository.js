@@ -77,8 +77,8 @@ const getProductVariantByArrayIdRepository = async (ids) => {
     `
         SELECT *
         FROM product_variants pv
-        JOIN cart_items ci ON pv.product_id = ci.product_id
-        WHERE id IN (${ids})
+        JOIN cart_items ci ON pv.id = ci.variant_id
+        WHERE pv.id IN (${ids})
     `,
     { replacements: { ids }, type: QueryTypes.SELECT }
   );
