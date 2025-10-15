@@ -40,6 +40,10 @@ const getCartItemByUserIdRepository = async (user_id) => {
   return await CartItem.findAll({ where: { user_id } });
 };
 
+const checkItemExistRepository = async (product_id, variant_id) => {
+  return await CartItem.findOne({ where: { product_id, variant_id } });
+};
+
 module.exports = {
   findAllCartItemRepository,
   findCartItemByIdRepository,
@@ -47,4 +51,5 @@ module.exports = {
   updateCartItemRepository,
   deleteCartItemRepository,
   getCartItemByUserIdRepository,
+  checkItemExistRepository,
 };
