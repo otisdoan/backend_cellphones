@@ -5,6 +5,7 @@ const {
   updateCartItemRepository,
   deleteCartItemRepository,
   getCartItemByUserIdRepository,
+  checkItemExistRepository,
 } = require("../repositories/cart_item.repository");
 
 const getAllCartItemsService = async () => {
@@ -18,7 +19,7 @@ const getCartItemByIdService = async (id) => {
 const createCartItemService = async (payload) => {
   const { product_id, variant_id, quantity } = payload;
 
-  const existingItems = await checkItemExistService(product_id, variant_id);
+  const existingItems = await checkItemExistRepository(product_id, variant_id);
   if (existingItems && existingItems.length > 0) {
     quantity++;
   }
