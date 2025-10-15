@@ -8,7 +8,7 @@ const findAllCartItemRepository = async () => {
 
 const findCartItemByIdRepository = async (id) => {
   return await sequelize.query(
-    ` select pv.*, ci.quantity
+    ` select *
       from product_variants pv
       join cart_items ci on pv.product_id = ci.product_id
       where ci.user_id = :id
