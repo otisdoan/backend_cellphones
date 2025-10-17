@@ -59,6 +59,12 @@ const loginWithGoogle = async (req, res) => {
         Math.floor(Math.random() * 10)
       ).join(""),
       email: googleUser.email,
+      full_name: googleUser.name,
+      password_hash: await hashPassword(
+        Array.from({ length: 12 }, () =>
+          Math.random().toString(36).charAt(2)
+        ).join("")
+      ),
     });
     const tokens = await generateToken(newUser.dataValues, res);
     await saveToken(tokens);
