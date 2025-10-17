@@ -50,20 +50,16 @@ const login = async (req, res) => {
 
 const loginWithGoogle = async (req, res) => {
   try {
-    // const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
     const { token } = req.body;
-    // const ticket = await client.verifyIdToken({
-    //   idToken: credential,
-    //   audience: process.env.GOOGLE_CLIENT_ID,
-    // });
-    // const payload = ticket.getPayload();
-    // console.log(payload);
     const googleUser = await getGoogleUserInfo(token);
-    const user = await getUserByEmail(googleUser.email);
-    const tokens = await generateToken(user.dataValues, res);
+    const newUser = await registerUser({
+      ...req.body,
+      email: googleUser.email,
+    });
+    const tokens = await generateToken(newUser.dataValues, res);
     await saveToken(tokens);
     successResponse(res, "Login successfully!", {
-      ...user.dataValues,
+      ...newUser.dataValues,
       ...tokens,
     });
   } catch (error) {
