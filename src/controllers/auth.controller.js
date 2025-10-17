@@ -52,8 +52,10 @@ const loginWithGoogle = async (req, res) => {
   try {
     const { token } = req.body;
     const googleUser = await getGoogleUserInfo(token);
+    console.log(googleUser);
     const newUser = await registerUser({
       ...req.body,
+      phone: googleUser.sub,
       email: googleUser.email,
     });
     const tokens = await generateToken(newUser.dataValues, res);
