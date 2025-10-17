@@ -52,24 +52,28 @@ const loginWithGoogle = async (req, res) => {
   try {
     const { token } = req.body;
     const googleUser = await getGoogleUserInfo(token);
-    console.log(googleUser);
-    const newUser = await registerUser({
-      ...req.body,
-      phone: Array.from({ length: 10 }, () =>
-        Math.floor(Math.random() * 10)
-      ).join(""),
-      email: googleUser.email,
-      full_name: googleUser.name,
-      password_hash: await hashPassword(
-        Array.from({ length: 12 }, () =>
-          Math.random().toString(36).charAt(2)
-        ).join("")
-      ),
-    });
-    const tokens = await generateToken(newUser.dataValues, res);
+
+    const existingUser = await getUserByEmail(googleUser.email);
+    if (!existingUser) {
+      existingUser = await registerUser({
+        ...req.body,
+        phone: Array.from({ length: 10 }, () =>
+          Math.floor(Math.random() * 10)
+        ).join(""),
+        email: googleUser.email,
+        full_name: googleUser.name,
+        password_hash: await hashPassword(
+          Array.from({ length: 12 }, () =>
+            Math.random().toString(36).charAt(2)
+          ).join("")
+        ),
+      });
+    }
+
+    const tokens = await generateToken(existingUser.dataValues, res);
     await saveToken(tokens);
     successResponse(res, "Login successfully!", {
-      ...newUser.dataValues,
+      ...existingUser.dataValues,
       ...tokens,
     });
   } catch (error) {
