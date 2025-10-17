@@ -35,7 +35,9 @@ const updateCartItemService = async (id, payload) => {
 };
 
 const deleteCartItemService = async (id) => {
-  return await deleteCartItemRepository(id);
+  const result = await deleteCartItemRepository(id);
+  if (result === 0) throw new Error("Cart item not found");
+  return { id };
 };
 
 const getCartItemByUserIdService = async (user_id) => {

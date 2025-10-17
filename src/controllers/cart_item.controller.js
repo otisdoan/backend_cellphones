@@ -51,8 +51,8 @@ const updateCartItemController = async (req, res) => {
 const deleteCartItemController = async (req, res) => {
   try {
     const { id } = req.params;
-    await deleteCartItemService(id);
-    successResponse(res, "Deleted cart item successfully!", "", 200);
+    const result = await deleteCartItemService(id);
+    successResponse(res, "Deleted cart item successfully!", result, 200);
   } catch (error) {
     errorResponse(res, error);
   }
