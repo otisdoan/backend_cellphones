@@ -25,8 +25,6 @@ const getUserByPhone = async (phone) => {
 };
 
 const getUserByEmail = async (emai) => {
-  const existingEmail = await checkEmailExists(emai);
-  if (!existingEmail) throw new Error("Email is not registed!");
   return await findUserByEmail(emai);
 };
 
