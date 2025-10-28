@@ -19,6 +19,22 @@ const createPayment = async (req, res) => {
   }
 };
 
+const verifyPayment = async (req, res) => {
+  console.log("req.body", req.body);
+  try {
+    const webhookData = await payos.webhooks.verify(req.body);
+    console.log("webhookData", webhookData);
+    if (webhookData.success) {
+      successResponse(res, "Payment verified successfully!", webhookData, 200);
+    } else {
+      errorResponse(res, "Payment verification failed!", webhookData, 400);
+    }
+  } catch (error) {
+    errorResponse(res, error);
+  }
+};
+
 module.exports = {
   createPayment,
+  verifyPayment,
 };
