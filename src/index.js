@@ -1,11 +1,15 @@
 require("dotenv").config();
 require("./configs/database.config");
+const { defineAssociations } = require("./models/associations");
 const express = require("express");
 const app = express();
 const port = process.env.PORT;
 const allRoute = require("./routes/index");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+
+// Define model associations
+defineAssociations();
 
 const corsOptions = {
   origin: [

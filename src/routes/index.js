@@ -19,6 +19,7 @@ const orderItemRoute = require("./order_item.route");
 const userRoute = require("./user.route");
 const cartItemRoute = require("./cart_item.route");
 const paymentRoute = require("./payment.route");
+const notificationRoute = require("./notification.route");
 
 routes.use("/auth", authRoute);
 routes.use("/category", categoryRoute);
@@ -39,5 +40,6 @@ routes.use("/order-items", orderItemRoute);
 routes.use("/users", userRoute);
 routes.use("/cart-items", cartItemRoute);
 routes.use("/payments", paymentRoute);
+routes.use("/notifications", notificationRoute);
 
 module.exports = routes;
