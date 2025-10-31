@@ -150,21 +150,21 @@ const defineAssociations = () => {
 
   // ProductVariant <-> OrderItem (1:N)
   ProductVariant.hasMany(OrderItem, {
-    foreignKey: "product_variant_id",
+    foreignKey: "variant_id",
     as: "orderItems",
   });
   OrderItem.belongsTo(ProductVariant, {
-    foreignKey: "product_variant_id",
+    foreignKey: "variant_id",
     as: "variant",
   });
 
   // ProductVariant <-> CartItem (1:N)
   ProductVariant.hasMany(CartItem, {
-    foreignKey: "product_variant_id",
+    foreignKey: "variant_id",
     as: "cartItems",
   });
   CartItem.belongsTo(ProductVariant, {
-    foreignKey: "product_variant_id",
+    foreignKey: "variant_id",
     as: "variant",
   });
 
