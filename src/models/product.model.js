@@ -74,6 +74,10 @@ const Product = sequelize.define(
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },
+    group_name: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+    },
     meta_title: {
       type: DataTypes.STRING(255),
     },

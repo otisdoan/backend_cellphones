@@ -18,7 +18,7 @@ const ProductVariant = sequelize.define(
       allowNull: false,
     },
     sku: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING(255),
       allowNull: false,
     },
     price: {
