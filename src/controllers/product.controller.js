@@ -90,7 +90,12 @@ const getProductByCategoryController = async (req, res) => {
   try {
     const { categoryId } = req.params;
     const products = await getProductByCategoryService(categoryId);
-    successResponse(res, "Get products by category successfully!", products, 200);
+    successResponse(
+      res,
+      "Get products by category successfully!",
+      products,
+      200
+    );
   } catch (error) {
     errorResponse(res, error);
   }
