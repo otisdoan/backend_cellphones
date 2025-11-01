@@ -6,6 +6,7 @@ const {
   getAllNameProductService,
   getProductDetailBySlugService,
   getProductByIdService,
+  getProductByCategoryService,
 } = require("../services/product.service");
 const { successResponse, errorResponse } = require("../utils/response.util");
 
@@ -85,6 +86,16 @@ const getProductByIdController = async (req, res) => {
   }
 };
 
+const getProductByCategoryController = async (req, res) => {
+  try {
+    const { categoryId } = req.params;
+    const products = await getProductByCategoryService(categoryId);
+    successResponse(res, "Get products by category successfully!", products, 200);
+  } catch (error) {
+    errorResponse(res, error);
+  }
+};
+
 module.exports = {
   createProductController,
   getAllProductController,
@@ -93,4 +104,5 @@ module.exports = {
   getAllNameProductController,
   getProductDetailBySlugController,
   getProductByIdController,
+  getProductByCategoryController,
 };

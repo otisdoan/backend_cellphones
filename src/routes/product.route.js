@@ -7,10 +7,12 @@ const {
   getAllNameProductController,
   getProductDetailBySlugController,
   getProductByIdController,
+  getProductByCategoryController,
 } = require("../controllers/product.controller");
 const routes = express.Router();
 
 routes.get("/", getAllProductController);
+routes.get("/category/:categoryId", getProductByCategoryController);
 routes.get("/:id/detail", getProductByIdController);
 routes.get("/name", getAllNameProductController);
 routes.get("/:slug", getProductDetailBySlugController);
