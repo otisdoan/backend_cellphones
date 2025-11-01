@@ -25,7 +25,7 @@ const getAllProductReposiroty = async () => {
         p.*, 
         c.name as category_name, 
         b.name as brand_name, 
-        ARRAY_AGG(pi.image_url) FILTER (WHERE pi.image_url IS NOT NULL) AS product_image
+        ARRAY_AGG(pi.image_url ORDER BY pi.sort_order) FILTER (WHERE pi.image_url IS NOT NULL) AS product_image
       FROM products p
       JOIN categories c on c.id = p.category_id
       JOIN brands b on b.id = p.brand_id
@@ -106,7 +106,7 @@ const getProductByCategoryRepository = async (categoryId) => {
         p.*, 
         c.name as category_name, 
         b.name as brand_name, 
-        ARRAY_AGG(pi.image_url) FILTER (WHERE pi.image_url IS NOT NULL) AS product_image
+        ARRAY_AGG(pi.image_url ORDER BY pi.sort_order) FILTER (WHERE pi.image_url IS NOT NULL) AS product_image
       FROM products p
       JOIN categories c on c.id = p.category_id
       JOIN brands b on b.id = p.brand_id

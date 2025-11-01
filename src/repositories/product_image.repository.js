@@ -8,7 +8,7 @@ const getAllImageRepository = async () => {
       SELECT pi.*, p.name
       FROM products p
       JOIN product_images pi ON pi.product_id = p.id
-      ORDER BY pi.id
+      ORDER BY pi.sort_order ASC
     `,
     {
       type: QueryTypes.SELECT,
