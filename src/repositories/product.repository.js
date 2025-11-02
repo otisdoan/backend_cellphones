@@ -95,8 +95,26 @@ const getProductDetailBySlugRepository = async (slug) => {
 };
 
 const getProductByIdRepository = async (id) => {
-  const [result] = await Product.findAll({ where: { id } });
-  return result;
+  const result = await sequelize.query(
+    `
+      SELECT 
+        p.*, 
+        c.name as category_name, 
+        b.name as brand_name, 
+        ARRAY_AGG(pi.image_url ORDER BY pi.sort_order) FILTER (WHERE pi.image_url IS NOT NULL) AS product_image
+      FROM products p
+      JOIN categories c on c.id = p.category_id
+      JOIN brands b on b.id = p.brand_id
+      LEFT JOIN product_images pi ON pi.product_id = p.id
+      WHERE p.id = :id
+      GROUP BY p.id, c.name, b.name
+    `,
+    {
+      replacements: { id },
+      type: QueryTypes.SELECT,
+    }
+  );
+  return result[0] || null;
 };
 
 const getProductByCategoryRepository = async (categoryId) => {

@@ -21,7 +21,47 @@ const createProductController = async (req, res) => {
 
 const getAllProductController = async (req, res) => {
   try {
-    const allProduct = await getAllProductService();
+    // Get query parameters
+    const { ids, limit, brand } = req.query;
+
+    // If specific IDs requested, fetch only those
+    if (ids) {
+      const productIds = ids
+        .split(",")
+        .map((id) => parseInt(id.trim()))
+        .filter((id) => !isNaN(id));
+      const products = await Promise.all(
+        productIds.map((id) => getProductByIdService(id))
+      );
+      // Filter out null results (products not found)
+      const validProducts = products.filter((p) => p !== null);
+      return successResponse(
+        res,
+        "Get products successfully!",
+        validProducts,
+        200
+      );
+    }
+
+    // Otherwise get all products
+    let allProduct = await getAllProductService();
+
+    // Apply filters if provided
+    if (brand) {
+      allProduct = allProduct.filter(
+        (p) =>
+          p.brand_name && p.brand_name.toLowerCase() === brand.toLowerCase()
+      );
+    }
+
+    // Apply limit if provided
+    if (limit) {
+      const limitNum = parseInt(limit);
+      if (!isNaN(limitNum) && limitNum > 0) {
+        allProduct = allProduct.slice(0, limitNum);
+      }
+    }
+
     successResponse(res, "Get all product successfully!", allProduct, 200);
   } catch (error) {
     errorResponse(res, error);

@@ -20,6 +20,8 @@ const userRoute = require("./user.route");
 const cartItemRoute = require("./cart_item.route");
 const paymentRoute = require("./payment.route");
 const notificationRoute = require("./notification.route");
+const chatRoute = require("./chat.route");
+const migrationRoute = require("./migration.route");
 
 routes.use("/auth", authRoute);
 routes.use("/category", categoryRoute);
@@ -41,5 +43,7 @@ routes.use("/users", userRoute);
 routes.use("/cart-items", cartItemRoute);
 routes.use("/payments", paymentRoute);
 routes.use("/notifications", notificationRoute);
+routes.use("/chat", chatRoute);
+routes.use("/migrations", migrationRoute);
 
 module.exports = routes;
