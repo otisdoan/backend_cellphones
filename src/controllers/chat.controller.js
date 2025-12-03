@@ -3,7 +3,8 @@ const ChatModel = require("../models/chat.model");
 const { v4: uuidv4 } = require("uuid");
 
 // FastAPI service URL from environment
-const FASTAPI_URL = process.env.FASTAPI_URL || "http://localhost:8000";
+const FASTAPI_URL =
+  process.env.FASTAPI_URL || "https://chatbox-cellphones-py.onrender.com";
 
 class ChatController {
   // Send message to AI chatbot
