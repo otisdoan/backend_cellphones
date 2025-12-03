@@ -26,11 +26,13 @@ const corsOptions = {
     "Origin",
   ],
   exposedHeaders: ["Set-Cookie"],
-  optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
-app.set("trust proxy", 1);
+
+// IMPORTANT: correct trust proxy for Render!
+app.enable("trust proxy");
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
