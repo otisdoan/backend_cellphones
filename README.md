@@ -1,0 +1,27 @@
+PORT=3000
+# DB_NAME=cellphones_online
+# DB_USER=cellphones_pg_render_user
+# DB_PASSWORD=LvitiAVo3MWU9rk3PJtMM4XSqGl7O4Ip
+# DB_HOST=dpg-d2lbu4juibrs73f2prjg-a.singapore-postgres.render.com
+# DB_PORT=5432
+JWT_ACCESS_TOKEN=FtruzthYRQQWISbou8gtaK6KGWXe1lt79eDzLlNnuv3tMIwQ4oxFG6vAELA16ZKu
+JWT_REFRESH_TOKEN=eHVFhlcojD8vUb3WAdSoWzv5XNVSMjKFUIgRojg1d3ZANmhbfbzQ43jpc0MstSeV
+
+GOOGLE_CLIENT_ID=566050216696-2d8pe12hamn2igtosqqbsfimos98i8en.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=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
+CLOUD_NAME=dxpdp88aq
+API_KEY=264283633723429
+API_SECRET=GdaSfTB49wEkfzt9ZoaAf2TQMto
+
+
+DB_NAME=cellphones_1
+DB_USER=postgres
+DB_PASSWORD=anhzac12345
+DB_HOST=localhost
+DB_PORT=5432
+
+FASTAPI_URL=https://chatbox-cellphones-py.onrender.com
+
+PAYOS_CLIENT_ID=d76c74a0-c391-4c96-ab4a-ee5eb1008a9c
+PAYOS_API_KEY=0a7595be-84a9-4ec2-88ae-c5bd25edf0b3
+PAYOS_CHECKSUM_KEY=aea5b85e9e94f46ff914308d459091e3912fd61e8982a6769408c3139472a90d
